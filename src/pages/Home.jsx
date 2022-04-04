@@ -1,30 +1,27 @@
 import React from "react";
-import hero from "../img/hero2.avif";
-import { Link } from "react-router-dom";
-
-const style = {
-  width: "85%",
-  height: "120vh",
-  backgroundImage: `url(${hero})`,
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-};
+import { NavLink } from "react-router-dom";
+import hero from "../assets/Hero.png";
 
 function Home() {
   return (
-    <div>
-      <h2 className="sale">SALE UP TO 50% | get it before it's gone</h2>
-      <div className="herocontainer" style={style}>
-        <h1 className="title">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit!
-        </h1>
-        <h2>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, neque
-          qui.
-        </h2>
-        <Link as={Link} to={`/products`}>
-          <button className="button">SHOP NOW</button>
-        </Link>
+    <div className="hero">
+      <div className="card bg-dark text-white border-0">
+        <img src={hero} className="card-img" alt="" height="800px" />
+        <div className="card-img-overlay d-flex flex-column justify-content-center">
+          <div className="container">
+            <h5 className="card-title display-3 fw-bolder mb-0 text-dark">
+              NEW SEASON ARRIVALS
+            </h5>
+            <p className="card-text lead fs-2 text-dark">
+              CHECK OUT ALL THE TRENDS
+            </p>
+            <div className="buttons">
+              <NavLink to="/products" className="btn btn-dark ms-2 px-3 py-2">
+                SHOP NOW
+              </NavLink>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

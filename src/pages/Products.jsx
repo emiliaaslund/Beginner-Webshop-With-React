@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import ProductList from "../components//ProductList";
+import FetchProducts from "../components/FetchProducts";
 import { productsState } from "../stores/products/products/atom";
 
 function Products() {
-  const products = useRecoilValue(productsState);
+  const [posts, setPosts] = useState([]);
 
   return (
-    <div className="product-list">
-      <h2>Trending Products</h2>
-      <ProductList products={products}></ProductList>
+    <div>
+      <h1 className="fs-2 text-dark mt-5">Latest Products</h1>
+      <FetchProducts />
     </div>
   );
 }
