@@ -2,39 +2,47 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { authState } from "../stores/products/auth/atom";
 import { useNavigate } from "react-router-dom";
+import ProfileNavbar from "../components/ProfileNavbar";
 
 function ProfilePage() {
-  //   const { user } = useRecoilValue(authState);
-  //   console.log(user);
+  const { user } = useRecoilValue(authState);
+  console.log(user);
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  //   function handleLogout() {
-  //     navigate("/login");
-  //   }
+  function handleLogout() {
+    navigate("/login");
+  }
 
   return (
     <div>
-      <div className="container mt-5">
-        <h1 className="fs-3 text-dark mb-5 mt-3">My Profile</h1>
-        <h4 className="fs-4 text-dark mb-5 mt-3">Welcome to the user page</h4>
-        <div className="col-md-6 center">
-          <p>Email: </p>
-          <p>Username: </p>
-          <p>City: </p>
-          <p>Street: </p>
-          <p>Number: </p>
-          <p>Zip-code: </p>
-          <p>Username: </p>
-          <p>Phone: </p>
-          <p>Password:</p>
-          <button
-            type="button"
-            className="btn btn-outline ms-2 px-3 py-2"
-            onClick={handleLogout}
-          >
-            Log out
-          </button>
+      <ProfileNavbar />
+      <div className="container mt-4">
+        <h3 className="fs-2 text-dark mb-5 mt-3">
+          Welcome to my page:
+          <span className="fw-bold"> {user.name.firstname}!</span>
+        </h3>
+        <div className="card col-md-6 center p-4">
+          <h4 className="fs-4 fw-bold mb-4 mt-2">MY DETAILS</h4>
+          <p className="fs-5">
+            <span className="fw-bold">Firstname: </span> {user.name.firstname}
+          </p>
+          <p className="fs-5">
+            <span className="fw-bold">Lastname: </span>
+            {user.name.lastname}
+          </p>
+          <p className="fs-5">
+            <span className="fw-bold">Username:</span> {user.name.firstname}
+          </p>
+
+          <p className="fs-5">
+            <span className="fw-bold">Email: </span>
+            {user.email}
+          </p>
+
+          <p className="fs-5">
+            <span className="fw-bold">Phone:</span> {user.phone}{" "}
+          </p>
         </div>
       </div>
     </div>

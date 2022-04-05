@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import React, { useState } from "react";
 import FetchProducts from "../components/FetchProducts";
-import { productsState } from "../stores/products/products/atom";
 
 function Products() {
   const [posts, setPosts] = useState([]);

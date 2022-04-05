@@ -12,6 +12,8 @@ function Login() {
 
   const navigate = useNavigate();
 
+  // console.log(authState);
+
   function handleSubmit() {
     axios
       .post("https://k4backend.osuka.dev/auth/login", {
@@ -26,8 +28,10 @@ function Login() {
               user: userData.data,
               token: res.data.token,
             });
+
             navigate(userData.data.role === "user" ? "/profile" : "/admin");
           });
+        console.log(auth);
       });
   }
 
@@ -45,7 +49,7 @@ function Login() {
               Username:
             </label>
             <input
-              type=""
+              type="username"
               className="form-control"
               id="username"
               autoComplete="off"

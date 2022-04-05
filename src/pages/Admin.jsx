@@ -13,9 +13,9 @@ function Admin() {
   return (
     <div>
       <AdminNavbar />
-      <h1 className="fs-2 text-dark mt-5">Welcome to the admin page</h1>
+      <h1 className="fs-2 text-dark mt-5 mb-4 ">Welcome to the Admin page! </h1>
       <div className="d-flex justify-content-center">
-        <img src={admin} alt="" height="600px" width="1200px" />
+        <img src={admin} alt="" height="700px" width="1300px" />
       </div>
     </div>
   );

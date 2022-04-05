@@ -36,11 +36,11 @@ function Navbar1() {
                   Products
                 </NavLink>
               </li>
-              {/* <li className="nav-item">
-                <NavLink className="nav-link" to="/contact">
+              <li className="nav-item">
+                <a className="nav-link" to="#">
                   Contact
-                </NavLink>
-              </li> */}
+                </a>
+              </li>
             </ul>
             <div className="buttons">
               <NavLink to="/Login" className="btn btn-outline-dark ms-2">
