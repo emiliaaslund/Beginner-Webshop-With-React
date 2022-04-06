@@ -28,10 +28,9 @@ function Login() {
               user: userData.data,
               token: res.data.token,
             });
-
+            console.log(auth, "tokeninfo");
             navigate(userData.data.role === "user" ? "/profile" : "/admin");
           });
-        console.log(auth);
       });
   }
 

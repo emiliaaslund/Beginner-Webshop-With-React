@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { productsState } from "../stores/products/products/atom";
-import { useRecoilState } from "recoil";
 import { Table } from "react-bootstrap";
 
 function FetchUsers() {

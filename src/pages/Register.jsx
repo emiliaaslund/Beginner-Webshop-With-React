@@ -1,66 +1,52 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { authState } from "../stores/products/auth/atom";
+import { authState, userState } from "../stores/products/auth/atom";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const [auth, setAuth] = useRecoilState(authState);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [city, setCity] = useState("");
-  const [street, setStreet] = useState("");
-  const [number, setNumber] = useState();
-  const [zipcode, setZipcode] = useState("");
-  const [phone, setPhone] = useState("");
   const navigate = useNavigate();
+  const [auth, setAuth] = useRecoilState(authState);
 
-  function handleRegister() {
-    axios
-      .post("https://k4backend.osuka.dev/users", {
-        username: username,
-        password: password,
-        email: email,
-        role: "user",
-        name: {
-          firstname: firstname,
-          lastname: lastname,
-        },
-        address: {
-          city: city,
-          street: street,
-          number: number,
-          zipcode: zipcode,
-        },
-        phone: phone,
-      })
-      // .then((res) => {
-      //   axios
-      //     .get(`https://k4backend.osuka.dev/users/${res.data.userId}`)
-      //     .then((userData) => {
-      //       setAuth({
-      //         user: userData.data,
-      //         token: res.data.token,
-      //       });
-      //     })
-      .catch((err) => {
-        console.log(err);
-      });
+  const [user, setUser] = useState({
+    email: "",
+    username: "",
+    password: "",
+    name: {
+      firstname: "",
+      lastname: "",
+    },
+    address: {
+      city: "city",
+      street: "street",
+      number: 1,
+      zipcode: "12926-3874",
+    },
+    phone: "",
+  });
+  console.log(user);
 
-    navigate("/login");
-    console.log(
-      username,
-      password,
-      email,
-      firstname,
-      lastname,
-      "hej vi syns i consolen"
-    );
-  }
-  // FÅR ERROR: Request failed with status code 401
+  const handleRegister = (e) => {
+    axios.post("https://k4backend.osuka.dev/users", user).then((res) => {
+      axios
+        .post("https://k4backend.osuka.dev/auth/login", {
+          username: res.data.username,
+          password: res.data.password,
+        })
+        .then((res) => {
+          axios
+            .get(`https://k4backend.osuka.dev/users/${res.data.userId}`)
+            .then((userData) => {
+              setAuth({
+                user: userData.data,
+                token: res.data.token,
+              });
+              navigate("/profile");
+            });
+        });
+    });
+    // console.log(user);
+  };
 
   return (
     <div className="container mt-5">
@@ -77,9 +63,9 @@ function Register() {
             <input
               type="text"
               className="form-control"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setUser({ ...user, username: e.target.value })}
               required
-              value={username}
+              value={user.username}
             />
           </div>
           <div className="col-md-6">
@@ -87,19 +73,27 @@ function Register() {
             <input
               type="password"
               className="form-control"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
               required
-              value={password}
+              value={user.password}
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label">First Name:</label>
+            <label className="form-label">Firstname:</label>
             <input
               type="text"
               className="form-control"
-              onChange={(e) => setFirstname(e.target.value)}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  name: {
+                    ...user.name,
+                    firstname: e.target.value,
+                  },
+                })
+              }
               required
-              value={firstname}
+              value={user.name.firstname}
             />
           </div>
           <div className="col-md-6">
@@ -107,9 +101,17 @@ function Register() {
             <input
               type="text"
               className="form-control"
-              onChange={(e) => setLastname(e.target.value)}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  name: {
+                    ...user.name,
+                    lastname: e.target.value,
+                  },
+                })
+              }
               required
-              value={lastname}
+              value={user.name.lastname}
             />
           </div>
           <div className="col-md-6">
@@ -117,9 +119,9 @@ function Register() {
             <input
               type="email"
               className="form-control"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
               required
-              value={email}
+              value={user.email}
             />
           </div>
 
@@ -128,9 +130,9 @@ function Register() {
             <input
               type="text"
               className="form-control"
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setUser({ ...user, phone: e.target.value })}
               required
-              value={phone}
+              value={user.phone}
             />
           </div>
 

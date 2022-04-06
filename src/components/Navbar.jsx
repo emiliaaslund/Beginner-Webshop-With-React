@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { cartState } from "../stores/products/cart/atom";
 import { useRecoilState } from "recoil";
 
-function Navbar1() {
+function Navbar() {
   const [cart, setCart] = useRecoilState(cartState);
 
   return (
@@ -61,4 +61,4 @@ function Navbar1() {
   );
 }
 
-export default Navbar1;
+export default Navbar;
