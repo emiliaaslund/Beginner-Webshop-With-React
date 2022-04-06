@@ -48,9 +48,6 @@ function AdminNavbar() {
                   <i className="fa fa-sign-in me-1"></i>Log out
                 </button>
               </NavLink>
-              {/* <NavLink to="/Login" className="btn btn-outline-dark ms-2">
-                <i className="fa fa-sign-in me-1"></i> Logout
-              </NavLink> */}
             </span>
           </div>
         </div>
