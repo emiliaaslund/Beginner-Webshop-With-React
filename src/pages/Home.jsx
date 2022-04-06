@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import hero from "../assets/Hero.png";
+import hero from "../assets/hero.avif";
 
 function Home() {
   return (
