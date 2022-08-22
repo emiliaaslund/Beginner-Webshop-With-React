@@ -7,7 +7,7 @@ function FetchUsers() {
 
   useEffect(() => {
     axios
-      .get("https://k4backend.osuka.dev/users")
+      .get("https://fakestoreapi.com/users")
       .then((res) => {
         console.log(res);
         setUsers(res.data);
