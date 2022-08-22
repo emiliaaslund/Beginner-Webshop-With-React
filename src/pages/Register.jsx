@@ -27,15 +27,15 @@ function Register() {
   console.log(user);
 
   const handleRegister = (e) => {
-    axios.post("https://k4backend.osuka.dev/users", user).then((res) => {
+    axios.post("https://fakestoreapi.com/users", user).then((res) => {
       axios
-        .post("https://k4backend.osuka.dev/auth/login", {
+        .post("https://fakestoreapi.com/auth/login", {
           username: res.data.username,
           password: res.data.password,
         })
         .then((res) => {
           axios
-            .get(`https://k4backend.osuka.dev/users/${res.data.userId}`)
+            .get(`https://fakestoreapi.com/users/${res.data.userId}`)
             .then((userData) => {
               setAuth({
                 user: userData.data,
