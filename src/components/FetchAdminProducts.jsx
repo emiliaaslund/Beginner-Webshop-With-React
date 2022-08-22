@@ -7,7 +7,7 @@ function FetchAdminProducts() {
 
   useEffect(() => {
     axios
-      .get("https://k4backend.osuka.dev/products")
+      .get("https://fakestoreapi.com/products")
       .then((res) => {
         console.log(res);
         setProduct(res.data);
