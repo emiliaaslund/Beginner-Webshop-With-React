@@ -16,13 +16,13 @@ function Login() {
 
   function handleSubmit() {
     axios
-      .post("https://k4backend.osuka.dev/auth/login", {
+      .post('https://fakestoreapi.com/auth/login', {
         username: username,
         password: password,
       })
       .then((res) => {
         axios
-          .get(`https://k4backend.osuka.dev/users/${res.data.userId}`)
+          .get(`https://fakestoreapi.com/users/${res.data.userId}`)
           .then((userData) => {
             setAuth({
               user: userData.data,
